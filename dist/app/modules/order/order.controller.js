@@ -18,7 +18,9 @@ const bike_model_1 = __importDefault(require("../bike/bike.model"));
 const order_service_1 = require("./order.service");
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // get the productId from body
         const productId = req.body.product;
+        // check if the productId is valid _id from bikes collection
         if (!mongoose_1.default.Types.ObjectId.isValid(productId)) {
             return res.status(404).json({
                 success: false,
@@ -27,12 +29,14 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         const bike = yield bike_model_1.default.findById(productId);
         const quantity = bike === null || bike === void 0 ? void 0 : bike.quantity;
+        // check if product availabe in stock searching quantity
         if (req.body.quantity > quantity) {
             return res.status(404).json({
                 success: false,
                 message: 'insufficient stock',
             });
         }
+        // finally order a bike
         const payload = req.body;
         const result = yield order_service_1.orderService.createOrder(payload);
         res.status(200).json({
@@ -42,6 +46,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
     catch (error) {
+        // handling error for invalid input
         if (error.name === 'ValidationError' && error.errors) {
             const field = Object.keys(error.errors)[0];
             if (error.errors[field].name === 'CastError') {
@@ -52,6 +57,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 });
             }
         }
+        //handling error with giving suggesestions
         res.status(500).json({
             message: error._message,
             success: false,

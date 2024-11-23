@@ -19,6 +19,7 @@ const createBike = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 const getBikes = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
+    // filter data accordingto searchTerm using $or method
     const query = searchTerm
         ? {
             $or: [
@@ -32,16 +33,19 @@ const getBikes = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () 
     return result;
 });
 const getSingleBike = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    //get the specific bike from bikes collection
     const result = yield bike_model_1.default.findById(id);
     return result;
 });
 const updateBike = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    // udpate a specific bike
     const result = yield bike_model_1.default.findByIdAndUpdate(id, data, {
         new: true,
     });
     return result;
 });
 const deleteBike = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    // delete a specific bike
     const result = yield bike_model_1.default.findByIdAndDelete(id);
     return result;
 });

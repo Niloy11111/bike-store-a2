@@ -16,6 +16,7 @@ exports.revenueController = void 0;
 const order_model_1 = __importDefault(require("../order/order.model"));
 const calculatetotalRevenue = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // calculate sum of the totalPrice field using $group with mongodb aggregation
         const totalAmount = yield order_model_1.default.aggregate([
             {
                 $group: {
@@ -31,8 +32,8 @@ const calculatetotalRevenue = (req, res) => __awaiter(void 0, void 0, void 0, fu
             },
         ]);
         res.send({
+            message: 'Revenue calculated successfully',
             status: true,
-            message: 'bike getting successfully',
             data: totalAmount[0],
         });
     }
