@@ -1,65 +1,78 @@
-#### Live Deployment Link
+# Bike Store
 
-[https://bike-store-a2.vercel.app/](https://bike-store-a2.vercel.app/)
+[Live Deployment Link](https://bike-store-a2.vercel.app/)
 
-#### All Features
+## Features
 
-### Creating a Bike
+### 1. Create a Bike
 
-#### user can create a bike with name,brand,category,description,quantity,inStcok in request body using this end point.
+Users can create a bike by providing the bike's name, brand, category, description, quantity, and stock status in the request body.
 
-#### endpoint : /api/products/create-bike
+**Endpoint**: `/api/products/create-bike`
 
-### Get all bikes
+### 2. Get All Bikes
 
-#### user can get all bike list by this endpoint.
+Users can retrieve the list of all bikes.
 
-#### endpoint : /api/products
+**Endpoint**: `/api/products`
 
-### Get a specific bike
+### 3. Get a Specific Bike
 
-#### user can get a specific bike by this endpoint, productId is the \_id of bike in the database.
+Users can retrieve details of a specific bike by providing the `productId`, which is the `_id` of the bike in the database.
 
-#### endpoint : /api/products/:productId
+**Endpoint**: `/api/products/:productId`
 
-### Update a Bike
+### 4. Update a Bike
 
-#### user can update a bike giving valid json in response body.prodcutId is the availabe \_id of any documents in bikes collections
+Users can update an existing bike by providing a valid JSON payload in the request body. The `productId` refers to the `_id` of the bike document in the database.
 
-#### endpoint : /api/products/:productId
+**Endpoint**: `/api/products/:productId`
 
-### Delete a Bike
+### 5. Delete a Bike
 
-#### user can delete a bike by this endpoint.productId is the availabe \_id of any documents in bikes collections
+Users can delete a bike by providing the `productId`, which is the `_id` of the bike in the database.
 
-#### endpoint : /api/products/:productId
+**Endpoint**: `/api/products/:productId`
 
-### Order a Bike
+### 6. Order a Bike
 
-#### users can order a bike by giving valid json in response of this endpoint
+Users can place an order for a bike by providing a valid JSON payload in the request body.
 
-#### endpoint : /api/orders/order-bike
+**Endpoint**: `/api/orders/order-bike`
 
-### Calculate Revenue from Orders
+### 7. Calculate Revenue from Orders
 
-#### this will give total sum of totalprice from every order
+This endpoint returns the total revenue, which is the sum of the `totalPrice` from all orders.
 
-#### endpoint : /api/orders/revenue
+**Endpoint**: `/api/orders/revenue`
 
-#### Instructions on setting up the project locally.
+## Setup Instructions
 
-#### Installation and setting up .env
+### 1. Installation and Environment Setup
 
-#### Add PORT and DATABASE_URL variable in .env file.DATABASE_URL is the uri from mongodb.
+1. Add the following variables in your `.env` file:
 
-### Now install npm
+   - `PORT`: The port number you want to run the application on.
+   - `DATABASE_URL`: The MongoDB URI.
+
+### 2. Install Dependencies
+
+Run the following command to install the required npm dependencies:
 
 ```
 npm install
 ```
+
+### 3. Run the Project
+
+Start the development server with the following command:
 
 #### run project
 
 ```
 npm run start:dev
 ```
+
+#### Live Deployment Link
+
+[https://bike-store-a2.vercel.app/](https://bike-store-a2.vercel.app/)
