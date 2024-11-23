@@ -1,6 +1,8 @@
 # Bike Store
 
-[Live Deployment Link](https://bike-store-a2.vercel.app/)
+#### Live Deployment Link
+
+[https://bike-store-a2.vercel.app/](https://bike-store-a2.vercel.app/)
 
 ## Features
 
