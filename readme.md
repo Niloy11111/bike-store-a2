@@ -10,7 +10,7 @@
 
 Users can create a bike by providing the bike's name, brand, category, description, quantity, and stock status in the request body.
 
-**Endpoint**: `/api/products/create-bike`
+**Endpoint**: `/api/products`
 
 ### 2. Get All Bikes
 
@@ -40,7 +40,7 @@ Users can delete a bike by providing the `productId`, which is the `_id` of the 
 
 Users can place an order for a bike by providing a valid JSON payload in the request body.
 
-**Endpoint**: `/api/orders/order-bike`
+**Endpoint**: `/api/orders`
 
 ### 7. Calculate Revenue from Orders
 

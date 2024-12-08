@@ -8,6 +8,7 @@ const createBike = async (payload: IBike): Promise<IBike> => {
 
 const getBikes = async (searchTerm: string) => {
   // filter data accordingto searchTerm using $or method
+
   const query = searchTerm
     ? {
         $or: [
