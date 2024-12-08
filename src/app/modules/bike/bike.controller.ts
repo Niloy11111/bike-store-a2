@@ -71,6 +71,9 @@ const getSingleBike = async (req: Request, res: Response) => {
     }
     const result = await bikeService.getSingleBike(productId);
 
+    if (result === null) {
+      throw new Error('Invalid Input');
+    }
     res.status(200).send({
       message: 'Bike retrieved successfully',
       status: true,

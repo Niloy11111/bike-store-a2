@@ -1,30 +1,8 @@
 import { Request, Response } from 'express';
 
-import mongoose from 'mongoose';
-import Bike from '../bike/bike.model';
 import { orderService } from './order.service';
 const createOrder = async (req: Request, res: Response) => {
   try {
-    // get the productId from body
-    const productId = req.body.product;
-    // check if the productId is valid _id from bikes collection
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-      return res.status(404).json({
-        success: false,
-        message: 'Invalid product ID',
-      });
-    }
-    const bike = await Bike.findById(productId);
-    const quantity = bike?.quantity as number;
-
-    // check if product availabe in stock searching quantity
-    if (req.body.quantity > quantity) {
-      return res.status(404).json({
-        success: false,
-        message: 'insufficient stock',
-      });
-    }
-
     // finally order a bike
     const payload = req.body;
     const result = await orderService.createOrder(payload);

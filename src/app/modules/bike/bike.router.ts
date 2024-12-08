@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { bikeController } from './bike.controller';
 const bikeRouter = Router();
 
-bikeRouter.post('/create-bike', bikeController.createBike);
+bikeRouter.post('/', bikeController.createBike);
 bikeRouter.get('/', bikeController.getBikes);
 bikeRouter.get('/:productId', bikeController.getSingleBike);
 bikeRouter.put('/:productId', bikeController.updateBike);
