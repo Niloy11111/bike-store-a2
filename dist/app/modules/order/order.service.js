@@ -13,8 +13,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.orderService = void 0;
+const bike_model_1 = __importDefault(require("../bike/bike.model"));
 const order_model_1 = __importDefault(require("./order.model"));
 const createOrder = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    // get the productId from body
+    const { product: productId, quantity } = payload;
+    // check if the productId is valid _id from bikes collection
+    const bike = yield bike_model_1.default.findById(productId);
+    if (!bike) {
+        throw new Error('Invalid product ID');
+    }
+    const availabeQuantity = bike === null || bike === void 0 ? void 0 : bike.quantity;
+    const updateBike = yield bike_model_1.default.findByIdAndUpdate(productId, {
+        $inc: { quantity: -quantity },
+    }, { new: true });
+    if ((updateBike === null || updateBike === void 0 ? void 0 : updateBike.quantity) === 0) {
+        yield bike_model_1.default.findByIdAndUpdate(productId, { inStock: false }, { new: true });
+    }
+    // check if product availabe in stock searching quantity
+    if (quantity > availabeQuantity) {
+        throw new Error('insufficient stock');
+    }
     const result = yield order_model_1.default.create(payload);
     return result;
 });

@@ -8,34 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.orderController = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const bike_model_1 = __importDefault(require("../bike/bike.model"));
 const order_service_1 = require("./order.service");
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // get the productId from body
-        const productId = req.body.product;
-        // check if the productId is valid _id from bikes collection
-        if (!mongoose_1.default.Types.ObjectId.isValid(productId)) {
-            return res.status(404).json({
-                success: false,
-                message: 'Invalid product ID',
-            });
-        }
-        const bike = yield bike_model_1.default.findById(productId);
-        const quantity = bike === null || bike === void 0 ? void 0 : bike.quantity;
-        // check if product availabe in stock searching quantity
-        if (req.body.quantity > quantity) {
-            return res.status(404).json({
-                success: false,
-                message: 'insufficient stock',
-            });
-        }
         // finally order a bike
         const payload = req.body;
         const result = yield order_service_1.orderService.createOrder(payload);

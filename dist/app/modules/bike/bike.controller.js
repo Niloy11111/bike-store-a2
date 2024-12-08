@@ -80,6 +80,9 @@ const getSingleBike = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             });
         }
         const result = yield bike_service_1.bikeService.getSingleBike(productId);
+        if (result === null) {
+            throw new Error('Invalid Input');
+        }
         res.status(200).send({
             message: 'Bike retrieved successfully',
             status: true,

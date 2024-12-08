@@ -17,4 +17,10 @@ app.get('/', (req, res) => {
         message: 'server live',
     });
 });
+app.use((req, res) => {
+    return res.status(404).json({
+        success: false,
+        message: 'api not found',
+    });
+});
 exports.default = app;
